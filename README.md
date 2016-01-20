@@ -11,11 +11,14 @@ type Foo
     x::Int
     u::Symbol
 end
+
 type Bar
     x::Float32
 end
+
 f = Foo(2, :result)
 b = Bar(1.6f0)
+
 resolve(quote
     u += x * x_post + a * dt
 end, f, post=b, dt=1e-3)
@@ -24,7 +27,7 @@ end, f, post=b, dt=1e-3)
 results in :
 ```
 quote
-    result += 2 * 1.6f0 + a
+    result += 2 * 1.6f0 + a * 0.001
 end
 ```
 

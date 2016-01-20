@@ -2,11 +2,21 @@
 
 [![Build Status](https://travis-ci.org/damiendr/ImplicitFields.jl.svg?branch=master)](https://travis-ci.org/damiendr/ImplicitFields.jl)
 
-Resolves implicit and suffixed references in quoted expressions.
+A metaprogramming tool for Julia that resolves implicit and suffixed references in quoted expressions. The primary use is to parse equation-like expressions and bind names to object fields.
 
 ## Basic Usage
 
+The main function, `resolve(expr, args...; kwargs...)` expects both optional and keyword arguments.
+These provide the resolution context, with the following conventions:
+
+- the fields of objects passed as optional arguments can be accessed directly: `x`
+- the fields of objects passed as keyword arguments must be suffixed with the keyword: `x_target`
+- objects passed as keyword arguments can also be accessed themselves under the keyword's name.
+- symbols that cannot be resolved are left as-is.
+
 ```julia
+using ImplicitFields
+
 type Foo
     x::Int
     u::Symbol

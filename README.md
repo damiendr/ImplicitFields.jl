@@ -33,7 +33,7 @@ end
 
 ## Custom Resolvers
 
-You can create custom handlers for a particular type by overriding the following methods, shown below with their default behaviour:
+You can create custom handlers for a particular type by implementing the following methods, shown below with their default behaviour:
 
 ```julia
 list_fields(obj::Any) = fieldnames(obj)
